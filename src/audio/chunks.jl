@@ -51,9 +51,9 @@ function chunks(audiofile, TextGridFile, outLocation, speakerOrder)
 
     # save chunks
     for i in 1:length(S)
-        S_audio = sound[seconds(S[i],f)]
+        S_audio = sound[seconds(S[i],f)] # split audio to each speaker interval
         # wavwrite(S_audio,location*"S\\S_$i.wav",Fs=f)
-        try
+        try # save chunk to "S1" or "S2" if exist, if not, creat new folder
             wavwrite(S_audio, outLocation*"\\S$speakerString\\"*string(i)*".wav", Fs=f, nbits=16, compression=WAVE_FORMAT_PCM)
         catch e
             mkdir(outLocation*"\\S$speakerString")

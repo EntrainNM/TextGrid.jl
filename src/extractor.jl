@@ -5,12 +5,15 @@ interval = extract(file)
 
 Read tiers information of each labelled interval from a TextGrid file
 
-Input:
-    * file: full path to a TextGrid file
-    * showinfo: optional
+Inputs:
+
+    \t☆ file: full path to a TextGrid file
+
+    \t☆ showinfo: optional
 
 Output:
-    * interval - matrix containing all TextGrid tiers
+
+    \t☆ interval - matrix containing all TextGrid interval tiers
 
 # Examples
 ```@example
