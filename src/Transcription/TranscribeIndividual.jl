@@ -4,7 +4,7 @@ using TextGrid, DelimitedFiles
 # for individaul files
 
 # 1- segment speakers into chunks
-parentFolder = raw"C:\Users\hemad\Desktop\Master\Azure\Transcriptions\CASD_CNT_Completed\CNT018_07012019"
+parentFolder = raw"C:\Users\hemad\.julia\dev\TextGrid\src\audio\A005_A006"
 audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
 TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
 chunks(audiofile, TextGridFile, parentFolder, 1)
@@ -17,7 +17,7 @@ chunks(audiofile, TextGridFile, parentFolder, 2)
 for (speakerOrder,itemNum) in zip((1,2),(10,11))
     transcription = parentFolder*"\\S$speakerOrder"*"\\transcription.txt"
     TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid"
-    insert(TextGridFile, transcription, speakerOrder, itemNum)
+    insertTranscription(TextGridFile, transcription, speakerOrder, itemNum)
 end
 
 # 4- combied the 2 TextGrid items (item 10 and 11) with the original TextGrid
