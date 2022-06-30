@@ -4,23 +4,23 @@ using TextGrid, DelimitedFiles
 
 
 # 1- segment speakers into chunks
-cd(raw"C:\Users\hemad\Desktop\Master\Azure\Transcriptions\Adult_Annotated_Sound_Files_Selected_Pairs")
+cd(raw"C:\Users\hemad\Desktop\Master\Original_Data\CASD_CNT_Match_Annotated")
 files = readdir(join=true)
-# for i in 1:length(files)
-#     parentFolder = files[i]# where to store the chunks
-#
-#     for n in [1,2]
-#         audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
-#         TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
-#         speakerOrder=n
-#         try
-#             chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
-#         catch # in case TextGrid file needs to be fixed (remove '\n' charachter)
-#             fix(TextGridFile)
-#             chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
-#         end
-#     end
-# end
+for i in 1:length(files)
+    parentFolder = files[i]# where to store the chunks
+
+    for n in [1,2]
+        audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
+        TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
+        speakerOrder=n
+        try
+            chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
+        catch # in case TextGrid file needs to be fixed (remove '\n' charachter)
+            fix(TextGridFile)
+            chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
+        end
+    end
+end
 
 # step 2, 3, 4, and 5
 for i in 1:length(files)

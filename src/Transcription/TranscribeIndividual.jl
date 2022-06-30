@@ -4,7 +4,7 @@ using TextGrid, DelimitedFiles
 # for individaul files
 
 # 1- segment speakers into chunks
-parentFolder = raw"C:\Users\hemad\Desktop\Master\Azure\Transcriptions\CASD_CNT_Completed\CASD001_07112017"
+parentFolder = raw"C:\Users\hemad\Desktop\Master\ExtractFeatures\transcribed\CASD001_MAW_thesis_session_1"
 audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
 TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
 chunks(audiofile, TextGridFile, parentFolder, 1)

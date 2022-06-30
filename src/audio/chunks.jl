@@ -23,7 +23,7 @@ speaker=2
 chunks(audiofile, TextGridFile, outLocation, speaker)
 ```
 # notes:
-# 0.1S length is added to each segment to improve recognition accuracy
+# 0.1S length is added to each segment to improve recognition accuracy - no
 """
 function chunks(audiofile, TextGridFile, outLocation, speakerOrder)
 
@@ -46,7 +46,7 @@ function chunks(audiofile, TextGridFile, outLocation, speakerOrder)
     S = [S_temp[i,:] for i in 1:length(S_temp[:,1]) if S_temp[i,:] != [-1,-1.0]]
     # add 0.1s for each segment for Azure to recognize properly
     # temp = [[S[i][1]-0.2,S[i][2]+0.2] for i in 1:length(S)]
-    temp = [[S[i][1],S[i][2]+0.1] for i in 1:length(S)]
+    temp = [[S[i][1],S[i][2]] for i in 1:length(S)]
     S = temp
 
     # save chunks
