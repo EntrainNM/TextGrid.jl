@@ -4,23 +4,23 @@ using TextGrid, DelimitedFiles
 
 
 # 1- segment speakers into chunks
-cd(raw"C:\Users\hemad\Desktop\Master\Original_Data\CASD_CNT_Match_Annotated")
+cd(raw"C:\Users\hemad\Desktop\Master\Original_Data\children_transcribed")
 files = readdir(join=true)
-for i in 1:length(files)
-    parentFolder = files[i]# where to store the chunks
-
-    for n in [1,2]
-        audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
-        TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
-        speakerOrder=n
-        try
-            chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
-        catch # in case TextGrid file needs to be fixed (remove '\n' charachter)
-            fix(TextGridFile)
-            chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
-        end
-    end
-end
+# for i in 1:length(files)
+#     parentFolder = files[i]# where to store the chunks
+#
+#     for n in [1,2]
+#         audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
+#         TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
+#         speakerOrder=n
+#         try
+#             chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
+#         catch # in case TextGrid file needs to be fixed (remove '\n' charachter)
+#             fix(TextGridFile)
+#             chunks(audiofile, TextGridFile, parentFolder, speakerOrder)
+#         end
+#     end
+# end
 
 # step 2, 3, 4, and 5
 for i in 1:length(files)
@@ -59,4 +59,43 @@ for i in 1:length(files)
     catch
         print("skipped $i")
     end
+end
+
+
+
+# copy .wav and new .TextGrid to new directory
+cd(raw"C:\Users\hemad\Desktop\Flash_Temp\audios\CASD_CNT_Completed")
+
+files = readdir(join=true)
+
+for i in 1:length(files)
+    parentFolder = files[i]
+    fileName = parentFolder[findlast('\\', parentFolder):end]
+
+    TextGridFile = parentFolder
+    wavFile = parentFolder*fileName*".wav"
+
+    println("moving file #", i, ": ",TextGridFile)
+
+    println(fileName)
+    # mkdir(destination*fileName)
+    # cp(TextGridFile, destination*fileName*fileName*".TextGrid")
+    # cp(wavFile, destination*fileName*fileName*".wav")
+end
+
+
+#
+# copy .wav and new .TextGrid to new directory, collected versin
+destination = raw"C:\Users\hemad\Desktop\Master\Original_Data\CHLD_Finished"
+
+for i in 1:length(files)
+    parentFolder = files[i]
+    fileName = parentFolder[findlast('\\', parentFolder):end]
+
+    TextGridFile = parentFolder*fileName*"_Transcribed.TextGrid"
+    wavFile = parentFolder*fileName*".wav"
+
+    mkdir(destination*fileName)
+    cp(TextGridFile, destination*fileName*fileName*".TextGrid")
+    cp(wavFile, destination*fileName*fileName*".wav")
 end

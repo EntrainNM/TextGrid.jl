@@ -1,7 +1,7 @@
 module TextGrid
 
 include("./extractor.jl")
-export extract, speaker
+export extract, speaker, wordSegments
 
 include("./Transcription/insertorTranscription.jl")
 export insertTranscription

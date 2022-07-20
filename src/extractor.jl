@@ -106,3 +106,48 @@ function speaker(interval,i)
     temp = [[S[i][1]-0.2,S[i][2]+0.2] for i in 1:length(S)]
     return temp
 end
+
+
+
+"""
+S1_words = segmentWords(interval, 1)
+
+return array of information related to S1 or S2 depending on input.
+
+returned array in the following formate:
+[Speaker location, start, end, # of words, [word end timestamps], speaker # (1 or 2)]
+
+"""
+function wordSegments(interval, speaker)
+
+    # speaker 1 or 2
+    if speaker == 1
+        SLocation = [("S$speaker" in interval[1][i]) for i in 1:length(interval[1])]
+        speakerInterval = interval[1]
+        wordInterval = interval[10]
+    elseif speaker == 2
+        SLocation = [("S$speaker" in interval[5][i]) for i in 1:length(interval[5])]
+        wordInterval = interval[11]
+        speakerInterval = interval[5]
+    end
+
+    timedWords = Vector{Vector{Any}}(undef,length(speakerInterval))
+    # skip segment if shorter than:
+    minSegment = 0.1
+    for i in 1:length(SLocation)
+        test = 0
+        endStamp = []
+        for n in 1:length(wordInterval)
+            #  (if word ends withing S1 ith segment)                                             & (segment is longer than 0.2 second)                  # word segment not empty
+            if ((speakerInterval[i][1]<wordInterval[n][2]) & (wordInterval[n][2]<speakerInterval[i][2])) & ((speakerInterval[i][2]-speakerInterval[i][1]) > minSegment) & !isempty(wordInterval[n][3])
+                test += 1
+                append!( endStamp, wordInterval[n][2] )
+            end
+        end
+
+        timedWords[i] = [i,speakerInterval[i][1],speakerInterval[i][2],test,endStamp,"S$speaker"]
+    end
+
+    return timedWords[SLocation]
+
+end
