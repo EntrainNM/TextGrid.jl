@@ -4,7 +4,7 @@ using TextGrid, DelimitedFiles
 
 
 # 1- segment speakers into chunks
-cd(raw"C:\Users\hemad\Desktop\Master\Original_Data\children_transcribed")
+cd(raw"C:\Users\hemad\Desktop\Master\Original_Data_Finished\Adults\Adults_transcribed")
 files = readdir(join=true)
 # for i in 1:length(files)
 #     parentFolder = files[i]# where to store the chunks
@@ -86,7 +86,7 @@ end
 
 #
 # copy .wav and new .TextGrid to new directory, collected versin
-destination = raw"C:\Users\hemad\Desktop\Master\Original_Data\CHLD_Finished"
+destination = raw"C:\Users\hemad\Desktop\Master\Original_Data_Finished\Adults\Adults_Finished"
 
 for i in 1:length(files)
     parentFolder = files[i]

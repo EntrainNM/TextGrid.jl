@@ -138,8 +138,10 @@ function wordSegments(interval, speaker)
         test = 0
         endStamp = []
         for n in 1:length(wordInterval)
-            #  (if word ends withing S1 ith segment)                                             & (segment is longer than 0.2 second)                  # word segment not empty
-            if ((speakerInterval[i][1]<wordInterval[n][2]) & (wordInterval[n][2]<speakerInterval[i][2])) & ((speakerInterval[i][2]-speakerInterval[i][1]) > minSegment) & !isempty(wordInterval[n][3])
+            averageTime = (wordInterval[n][1] + wordInterval[n][2]) / 2
+            #  (if word ends withing S1 ith segment)                                           & (segment is longer than 0.2 second)                  # word segment not empty
+            # if ((speakerInterval[i][1]<wordInterval[n][2]) & (wordInterval[n][2]<speakerInterval[i][2])) & ((speakerInterval[i][2]-speakerInterval[i][1]) > minSegment) & !isempty(wordInterval[n][3])
+            if ((speakerInterval[i][1]<averageTime) & (averageTime<speakerInterval[i][2])) & ((speakerInterval[i][2]-speakerInterval[i][1]) > minSegment) & !isempty(wordInterval[n][3]) & (wordInterval[n][3] != " ")
                 test += 1
                 append!( endStamp, wordInterval[n][2] )
             end

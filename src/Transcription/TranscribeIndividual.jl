@@ -4,11 +4,11 @@ using TextGrid, DelimitedFiles
 # for individaul files
 
 # 1- segment speakers into chunks
-parentFolder = raw"C:\Users\hemad\Desktop\Master\ExtractFeatures\transcribed\CASD001_MAW_thesis_session_1"
+parentFolder = raw"C:\Users\hemad\Desktop\Master\Original_Data_Finished\Adults\Adults_transcribed\A050_A048"
 audiofile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".wav" # path Wav file
 TextGridFile = parentFolder*parentFolder[findlast('\\', parentFolder):end]*".TextGrid" # path to TextGrid file
-chunks(audiofile, TextGridFile, parentFolder, 1)
-chunks(audiofile, TextGridFile, parentFolder, 2)
+# chunks(audiofile, TextGridFile, parentFolder, 1)
+# chunks(audiofile, TextGridFile, parentFolder, 2)
 
 # 2- use python to transcribe audio and save it in the correct format
 
