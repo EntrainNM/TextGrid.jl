@@ -25,7 +25,8 @@ interval = extract(raw"full\\path\\file.TextGrid")
 function extract(input; showinfo=false)
     f = open(input, "r")
     #CHECK FILE TYPE
-    occursin("ooTextFile", readline(f)) ? print("Successuflly opened ooTextFile\n") : print("File type NOT: \"ooTextFile\n")#line#1
+    readline(f)#line#1
+    # occursin("ooTextFile", readline(f)) ? print("Successuflly opened ooTextFile\n") : print("File type NOT: \"ooTextFile\n")#line#1
     #CHECK OBJECT CLASS
     if !(readline(f) == "Object class = \"TextGrid\"")#line#2
      throw(UndefVarError(:NotTextGridFile))

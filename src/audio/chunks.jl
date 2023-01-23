@@ -2,7 +2,7 @@ using TextGrid, WAV
 
 """
 chunks - save segments of speaker (S1 or S2) as wav files to use in speech-to-text softwares
-         to imporve accuracy and alignment
+         to improve accuracy and alignment
 
 Inputs:
 audiofile: path to the wav file
