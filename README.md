@@ -31,3 +31,6 @@ $\mathrm{u}(t) = \begin{cases}
 ## Unnormalized Gaussian Function
 
 We include an unnormalized **Gaussian function** denoted `𝒩ᵤ(x; μ, σ)` parameterized by mean `μ` and standard deviation `σ` defined as
+
+
+$\mathcal{N}_\mathrm{u}(x;\mu,\sigma) = \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right).$
