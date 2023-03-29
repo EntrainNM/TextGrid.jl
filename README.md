@@ -14,3 +14,20 @@
 2) Enter the package manager in REPL by pressing `]`  then add the package by typing `dev TextGrid` rather than `add TextGrid`.
 
 ## [Documentation](https://entrainnm.github.io/TextGrid.jl/dev/)
+
+
+
+# Utility Functions
+
+## Unit Step Function
+
+We include a **unit step function** `u(t)` defined as
+
+$\mathrm{u}(t) = \begin{cases}
+        1, &   t \geq 0 \\
+        0, &   t < 0       
+        \end{cases}.$
+
+## Unnormalized Gaussian Function
+
+We include an unnormalized **Gaussian function** denoted `𝒩ᵤ(x; μ, σ)` parameterized by mean `μ` and standard deviation `σ` defined as
